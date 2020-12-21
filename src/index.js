@@ -9,7 +9,7 @@ admin.initializeApp();
 // Apollo
 const { ApolloServer, gql } = require("apollo-server-express");
 
-const postsAPI = require('../datasources/postsAPI')
+const postsAPI = require('./datasources/postsAPI')
 const resolvers = require('./resolvers')
 const typeDefs = require('./schema')
 
@@ -21,7 +21,8 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     introspection: true,
-    dataSources, });
+    dataSources
+});
 server.applyMiddleware({ app, path: "/", cors: true });
 exports.graphql = functions.https.onRequest(app);
 
